@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -29,28 +30,26 @@ builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
     .AddUserStore<UserStore<ApplicationUser, ApplicationRole, UniversityDbContext, Guid>>()
     .AddRoleStore<RoleStore<ApplicationRole, UniversityDbContext, Guid>>();
 
-builder.Services.AddAuthentication(options =>
-{
+//JWT
+builder.Services.AddAuthentication(options => {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    options.SaveToken = true;
-    options.RequireHttpsMetadata = false;
-    options.TokenValidationParameters = new TokenValidationParameters()
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ClockSkew = TimeSpan.Zero,
 
-        ValidAudience = builder.Configuration["JWT:ValidAudience"],
-        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
-    };
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+ .AddJwtBearer(options => {
+     options.TokenValidationParameters = new TokenValidationParameters()
+     {
+         ValidateAudience = true,
+         ValidAudience = builder.Configuration["Jwt:Audience"],
+         ValidateIssuer = true,
+         ValidIssuer = builder.Configuration["Jwt:Issuer"],
+         ValidateLifetime = true,
+         ValidateIssuerSigningKey = true,
+         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+     };
+ });
+
+builder.Services.AddAuthorization(options => {
 });
 
 var app = builder.Build();

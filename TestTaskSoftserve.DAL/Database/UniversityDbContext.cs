@@ -17,6 +17,12 @@ namespace TestTaskSoftserve.DAL.Database
     public class UniversityDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {
         private readonly IConfiguration _configuration;
+
+        public UniversityDbContext()
+        {
+
+        }
+
         public UniversityDbContext(DbContextOptions<UniversityDbContext> options,
             IConfiguration configuration) : base(options)
         {
@@ -32,6 +38,8 @@ namespace TestTaskSoftserve.DAL.Database
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.ApplyConfigurationsFromAssembly(typeof(UniversityDbContext).Assembly);
 
             builder.ApplyConfiguration(new StudentEntityConfiguration());
             builder.ApplyConfiguration(new CourseEntityConfiguration());

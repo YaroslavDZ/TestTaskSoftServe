@@ -98,8 +98,8 @@ namespace TestTaskSoftServe.DAL.Database
             Guid UserRoleId = Guid.NewGuid();
             Guid AdminId = Guid.NewGuid();
 
-            var adminEmail = configuration["AdminEmail"];
-            var adminPassword = configuration["AdminPassword"];
+            var adminEmail = configuration["Admin:Login"];
+            var adminPassword = configuration["Admin:Password"];
 
             var passwordHasher = new PasswordHasher<ApplicationUser>();
 
