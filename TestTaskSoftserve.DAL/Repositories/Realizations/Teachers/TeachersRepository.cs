@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,11 @@ namespace TestTaskSoftServe.DAL.Repositories.Realizations.Teachers
         public TeachersRepository(UniversityDbContext dbContext) : base(dbContext)
         {
 
+        }
+
+        public async Task<IEnumerable<Teacher>> GetAllByIdsAsync(List<Guid> ids)
+        {
+            return await _db.Set<Teacher>().Where(t => ids.Contains(t.Id)).ToListAsync();
         }
     }
 }

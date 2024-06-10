@@ -13,7 +13,7 @@ namespace TestTaskSoftserve.DAL.Repositories.Realizations
 {
     public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
-        private readonly UniversityDbContext _db;
+        protected readonly UniversityDbContext _db;
 
         public RepositoryBase(UniversityDbContext context)
         {

@@ -9,7 +9,7 @@ using TestTaskSoftServe.DAL.Entities.User;
 
 namespace Test_Task_SoftServe.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     [AllowAnonymous]
     public class AccountController : ControllerBase

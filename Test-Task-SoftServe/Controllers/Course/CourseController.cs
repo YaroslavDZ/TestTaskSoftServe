@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TestTaskSoftServe.BLL.Dto.CourseDtos;
 using TestTaskSoftServe.BLL.Dto.TeacherDtos;
@@ -18,6 +19,7 @@ namespace Test_Task_SoftServe.Controllers.Course
             _courseService = courseService;
         }
 
+        [Authorize("Admin")]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -33,6 +35,7 @@ namespace Test_Task_SoftServe.Controllers.Course
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetById(Guid? id)
         {
             var courseResponseDto =
@@ -41,6 +44,7 @@ namespace Test_Task_SoftServe.Controllers.Course
             return courseResponseDto is null ? NoContent() : Ok(courseResponseDto);
         }
 
+        [Authorize("Admin")]
         [HttpPost]
         public async Task<IActionResult> Create(CourseAddRequestDto? courseAddRequestDto)
         {
@@ -57,6 +61,7 @@ namespace Test_Task_SoftServe.Controllers.Course
                 courseResponseDto);
         }
 
+        [Authorize("Admin")]
         [HttpPut]
         public async Task<IActionResult> Update(CourseUpdateRequestDto? courseUpdateRequestDto)
         {
@@ -66,6 +71,7 @@ namespace Test_Task_SoftServe.Controllers.Course
             return courseResponseDto is null ? NotFound() : Ok(courseResponseDto);
         }
 
+        [Authorize("Admin")]
         [HttpDelete]
         public async Task<IActionResult> Delete(Guid id)
         {

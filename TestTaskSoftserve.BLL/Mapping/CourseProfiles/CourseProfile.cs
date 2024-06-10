@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using TestTaskSoftserve.DAL.Entities;
 using TestTaskSoftServe.BLL.Dto.CourseDtos;
+using TestTaskSoftServe.BLL.Services.Interfaces;
 
 namespace TestTaskSoftServe.BLL.Mapping.CourseProfiles
 {
@@ -8,13 +9,9 @@ namespace TestTaskSoftServe.BLL.Mapping.CourseProfiles
     {
         public CourseProfile()
         {
-            CreateMap<CourseAddRequestDto, Course>()
-                .ForMember(dest => dest.Students, source => source.MapFrom(c => c.StudentsIds))
-                .ForMember(dest => dest.Teachers, source => source.MapFrom(c => c.TeachersIds));
+            CreateMap<CourseAddRequestDto, Course>().ReverseMap();
 
-            CreateMap<CourseUpdateRequestDto, Course>()
-                .ForMember(dest => dest.Students, source => source.MapFrom(c => c.StudentsIds))
-                .ForMember(dest => dest.Teachers, source => source.MapFrom(c => c.TeachersIds));
+            CreateMap<CourseUpdateRequestDto, Course>().ReverseMap();
 
             CreateMap<Course, CourseResponseDto>()
                 .ReverseMap();

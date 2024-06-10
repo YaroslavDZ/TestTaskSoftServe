@@ -10,5 +10,6 @@ namespace TestTaskSoftServe.DAL.Repositories.Interfaces.Students
 {
     public interface IStudentsRepository : IRepositoryBase<Student>
     {
+        Task<List<Student>> GetAllByIdsAsync(List<Guid> ids);
     }
 }

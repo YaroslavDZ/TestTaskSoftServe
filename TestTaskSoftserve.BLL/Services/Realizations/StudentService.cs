@@ -115,6 +115,31 @@ namespace TestTaskSoftServe.BLL.Services.Realizations
             return _mapper.Map<StudentResponseDto>(student);
         }
 
+        public async Task<List<Student>> GetAllStudentsByIds(List<Guid> ids)
+        {
+            _logger.LogInformation($"Getting Students by their Ids was started.");
+
+            if (ids is null)
+            {
+                var message = "Student ids collection can't be null";
+                _logger.LogError(message);
+                throw new ArgumentNullException(nameof(ids), message);
+            }
+
+            List<Student> students = await _studentsRepository.GetAllByIdsAsync(ids);
+
+            if (students is null)
+            {
+                var message = $"There are no objects by such ids";
+                _logger.LogError(message);
+                throw new KeyNotFoundException(message);
+            }
+
+            _logger.LogInformation($"Got Students with given ids.");
+
+            return students;
+        }
+
         public async Task<StudentResponseDto> UpdateStudent(StudentUpdateRequestDto? studentUpdateRequestDto)
         {
             if (studentUpdateRequestDto is null)
