@@ -44,6 +44,7 @@ namespace TestTaskSoftServe.DAL.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     RefreshToken = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    RefreshTokenExpirationDateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     NormalizedUserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
@@ -303,26 +304,26 @@ namespace TestTaskSoftServe.DAL.Migrations
                 columns: new[] { "Id", "Description", "Title" },
                 values: new object[,]
                 {
-                    { new Guid("06a75fb1-0b59-4907-9ffc-222548311684"), "Description 1", "Course 1" },
-                    { new Guid("294b4ff1-2a54-462c-80da-c324b3647ad6"), "Description 17", "Course 17" },
-                    { new Guid("29828ec6-3890-437b-8a87-89bb4890e5e5"), "Description 18", "Course 18" },
-                    { new Guid("2b9cc3b9-62ab-410e-b21a-5dc65e722e00"), "Description 11", "Course 11" },
-                    { new Guid("2e69a572-63b5-401e-ba11-a08006a518b8"), "Description 10", "Course 10" },
-                    { new Guid("2f0b3f5b-a129-4568-a229-8c19e810ff40"), "Description 2", "Course 2" },
-                    { new Guid("350e3b62-7f72-4e75-a2f2-8a5229864ba8"), "Description 7", "Course 7" },
-                    { new Guid("41eab40b-f4c1-44fb-8ca6-9384ad8b8e34"), "Description 13", "Course 13" },
-                    { new Guid("44bf0c42-ffb2-45ca-ac0e-8d2a7d17d8cd"), "Description 3", "Course 3" },
-                    { new Guid("45b09f1f-e7ad-4f20-afcc-eb09b171b765"), "Description 12", "Course 12" },
-                    { new Guid("5508581b-aebd-45bb-9db0-be61545fa8d3"), "Description 6", "Course 6" },
-                    { new Guid("5af59633-6e41-405a-aaca-94da44e843b1"), "Description 15", "Course 15" },
-                    { new Guid("69adcb06-034b-4651-9006-d615a33042a0"), "Description 4", "Course 4" },
-                    { new Guid("6ee88dd5-4e86-436c-b25a-d6e8dc1aacd5"), "Description 9", "Course 9" },
-                    { new Guid("71428de3-b153-41db-aadb-725169e5602a"), "Description 19", "Course 19" },
-                    { new Guid("9546f6c9-41cb-4a2b-8a22-636f0b93eee1"), "Description 20", "Course 20" },
-                    { new Guid("9b3c7645-b621-4ca0-a819-653fba481bac"), "Description 16", "Course 16" },
-                    { new Guid("ad9b7ea5-1d0d-4a57-a241-005f1398f1b3"), "Description 14", "Course 14" },
-                    { new Guid("b7eac20b-9f15-4ad9-8463-abb20e390479"), "Description 5", "Course 5" },
-                    { new Guid("c13c20dc-f0f6-4d5d-b24a-cca5d3a58590"), "Description 8", "Course 8" }
+                    { new Guid("105c6f3f-dbbf-4df3-97f1-272bd988c1e6"), "Description 8", "Course 8" },
+                    { new Guid("29a7c329-7c2a-4311-b9d3-1664929db4ca"), "Description 15", "Course 15" },
+                    { new Guid("2d90d7b4-187d-4625-99e4-9ffce997e26a"), "Description 14", "Course 14" },
+                    { new Guid("324a22f3-3c5e-4e42-97c5-203abd8ba03e"), "Description 16", "Course 16" },
+                    { new Guid("3c2948fb-fef2-47b0-92da-d8fbbca27fca"), "Description 3", "Course 3" },
+                    { new Guid("466d87d5-06fd-4c92-914f-5c5c4adfc3d9"), "Description 18", "Course 18" },
+                    { new Guid("5798cd04-ca2a-4d13-a80b-ce504c62d5f9"), "Description 17", "Course 17" },
+                    { new Guid("75e32b4d-22ae-47e7-888e-0548d802903a"), "Description 2", "Course 2" },
+                    { new Guid("89dfcfdd-3eea-4a1a-99d8-00ed79e6f506"), "Description 20", "Course 20" },
+                    { new Guid("9039133d-c013-4b91-9664-d193e0d67830"), "Description 4", "Course 4" },
+                    { new Guid("90661fbe-5533-4e92-938f-3387ede54d05"), "Description 5", "Course 5" },
+                    { new Guid("c23bedfb-d070-43c3-8554-ba627502b820"), "Description 1", "Course 1" },
+                    { new Guid("c5515509-0d62-44f9-89ca-d9d7f796f478"), "Description 10", "Course 10" },
+                    { new Guid("d0e34392-7b21-49ae-964a-8b98a5506e5c"), "Description 7", "Course 7" },
+                    { new Guid("d7a00e5f-ae29-4195-af17-b1450a24c429"), "Description 13", "Course 13" },
+                    { new Guid("dddd3fa6-32d6-489f-a3a5-28df94e1fbd9"), "Description 11", "Course 11" },
+                    { new Guid("e349fd9b-297f-4e04-8349-399b66b5ec9e"), "Description 12", "Course 12" },
+                    { new Guid("f18293bf-ba2d-406f-9b04-c78a5190504e"), "Description 6", "Course 6" },
+                    { new Guid("f58cf47f-34e3-4eec-85f8-ac472b2bb594"), "Description 9", "Course 9" },
+                    { new Guid("fcd7b1af-a9b3-493e-b43d-7c41fd3a7666"), "Description 19", "Course 19" }
                 });
 
             migrationBuilder.InsertData(
@@ -330,16 +331,16 @@ namespace TestTaskSoftServe.DAL.Migrations
                 columns: new[] { "Id", "Age", "Group", "Name", "StudyYear", "Surname" },
                 values: new object[,]
                 {
-                    { new Guid("1fdd4289-315b-42c3-9c65-f4abe766c739"), 56, "Group 7", "Student's name 7", 16, "Student's surname 7" },
-                    { new Guid("21dc435f-3b04-4cbb-ad87-228d4c74b411"), 99, "Group 4", "Student's name 4", 5, "Student's surname 4" },
-                    { new Guid("3e4ea4ac-ddfc-434d-abdc-a5136d19cb2b"), 22, "Group 2", "Student's name 2", 1, "Student's surname 2" },
-                    { new Guid("43786dc2-9025-42d0-9e3a-f9f5a3dddd98"), 24, "Group 3", "Student's name 3", 4, "Student's surname 3" },
-                    { new Guid("5becd8e8-85fb-4312-a9b9-d49137e87f94"), 99, "Group 5", "Student's name 5", 14, "Student's surname 5" },
-                    { new Guid("8d7aad17-847d-4061-be43-5680849b6df5"), 102, "Group 6", "Student's name 6", 8, "Student's surname 6" },
-                    { new Guid("97206f88-6722-4493-9724-fa620563abf1"), 63, "Group 8", "Student's name 8", 23, "Student's surname 8" },
-                    { new Guid("9ae9be50-2781-4a3c-af73-bc11c673e237"), 69, "Group 9", "Student's name 9", 16, "Student's surname 9" },
-                    { new Guid("9b058a28-df23-41a1-88ad-7d61788b573b"), 102, "Group 1", "Student's name 1", 0, "Student's surname 1" },
-                    { new Guid("ede7d796-ad5a-45f7-a233-87c35798d4c4"), 32, "Group 10", "Student's name 10", 5, "Student's surname 10" }
+                    { new Guid("144440a7-07fd-4762-b001-e50f8485b151"), 72, "Group 5", "Student's name 5", 14, "Student's surname 5" },
+                    { new Guid("16c4e638-d049-4c91-87d1-9a7a8f856706"), 21, "Group 10", "Student's name 10", 27, "Student's surname 10" },
+                    { new Guid("170423fb-907c-46ba-8c4d-89fff5f84b43"), 28, "Group 1", "Student's name 1", 1, "Student's surname 1" },
+                    { new Guid("6275f4ac-70ce-4bd3-b446-ba27dc37fb3e"), 47, "Group 8", "Student's name 8", 18, "Student's surname 8" },
+                    { new Guid("ba8911cd-b330-4de5-a0a9-fb79d6224ac5"), 93, "Group 9", "Student's name 9", 15, "Student's surname 9" },
+                    { new Guid("c9952b3f-bbcb-49dd-a547-a5a8b68c91a4"), 65, "Group 7", "Student's name 7", 4, "Student's surname 7" },
+                    { new Guid("c9fdd8ab-6827-42cf-a269-1a330e2bbd40"), 33, "Group 2", "Student's name 2", 4, "Student's surname 2" },
+                    { new Guid("d19d02f5-4eb7-432e-9de9-3e3a9c40f16e"), 66, "Group 3", "Student's name 3", 0, "Student's surname 3" },
+                    { new Guid("d97b1c40-a546-4fd6-9392-4466adbee4d0"), 56, "Group 6", "Student's name 6", 13, "Student's surname 6" },
+                    { new Guid("df778a58-8e85-4510-a25e-76af54282209"), 109, "Group 4", "Student's name 4", 0, "Student's surname 4" }
                 });
 
             migrationBuilder.InsertData(
@@ -347,16 +348,16 @@ namespace TestTaskSoftServe.DAL.Migrations
                 columns: new[] { "Id", "Age", "Experience", "Name", "Surname" },
                 values: new object[,]
                 {
-                    { new Guid("1194fcfc-6176-4397-b58f-5e0ed7d910ce"), 21, 22, "Teacher's name 9", "Teacher's surname 9" },
-                    { new Guid("299c8444-7ae9-4e3b-a678-b2edc2bb1165"), 25, 9, "Teacher's name 5", "Teacher's surname 5" },
-                    { new Guid("2df720fd-efe2-4f69-b353-7c723888f99b"), 22, 2, "Teacher's name 1", "Teacher's surname 1" },
-                    { new Guid("338ff14f-5d1c-4dbd-a425-eb5426bed2bd"), 18, 15, "Teacher's name 6", "Teacher's surname 6" },
-                    { new Guid("3bbd5298-1a1b-43a7-b88e-fd3af61c6acd"), 30, 2, "Teacher's name 2", "Teacher's surname 2" },
-                    { new Guid("5573471d-b765-4349-b529-ee90ce9bd804"), 41, 23, "Teacher's name 10", "Teacher's surname 10" },
-                    { new Guid("abb04b91-fdc1-48d3-9b28-f66ad32c9b46"), 40, 4, "Teacher's name 3", "Teacher's surname 3" },
-                    { new Guid("b44beef0-5237-4c3b-bdcf-968058ba2109"), 36, 15, "Teacher's name 8", "Teacher's surname 8" },
-                    { new Guid("cbcf53ef-082e-4806-a823-b69b76eb7332"), 48, 8, "Teacher's name 4", "Teacher's surname 4" },
-                    { new Guid("e1681851-b3de-4e08-b0fa-05cbd4cc7b78"), 57, 5, "Teacher's name 7", "Teacher's surname 7" }
+                    { new Guid("2920ea02-f7f3-415b-915a-4448117d6ddf"), 20, 1, "Teacher's name 3", "Teacher's surname 3" },
+                    { new Guid("2e672988-007c-4d59-8cd4-8c31ab637265"), 62, 12, "Teacher's name 7", "Teacher's surname 7" },
+                    { new Guid("71e26009-f453-46c0-a4f9-df6556a368d3"), 53, 2, "Teacher's name 1", "Teacher's surname 1" },
+                    { new Guid("895ae290-1f8a-4450-9ef4-40f7dc8725c3"), 30, 23, "Teacher's name 9", "Teacher's surname 9" },
+                    { new Guid("bb8b413b-d9b3-48ef-b243-651004c995ec"), 49, 11, "Teacher's name 4", "Teacher's surname 4" },
+                    { new Guid("bd2172b3-eec6-4346-8de5-508beeb4c070"), 52, 6, "Teacher's name 5", "Teacher's surname 5" },
+                    { new Guid("e37a28b7-8252-425c-af62-3f39399c9fa1"), 45, 10, "Teacher's name 6", "Teacher's surname 6" },
+                    { new Guid("e96afaee-92fa-43bd-85e0-b34cb8f7502f"), 50, 5, "Teacher's name 2", "Teacher's surname 2" },
+                    { new Guid("ec6ae8b7-54ea-4fa5-8665-40b4b3a09f4d"), 64, 28, "Teacher's name 10", "Teacher's surname 10" },
+                    { new Guid("fb8e8494-26ef-475f-a4da-fd630fd59117"), 25, 0, "Teacher's name 8", "Teacher's surname 8" }
                 });
 
             migrationBuilder.CreateIndex(

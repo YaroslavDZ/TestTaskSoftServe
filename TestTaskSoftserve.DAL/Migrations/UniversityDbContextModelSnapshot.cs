@@ -278,121 +278,121 @@ namespace TestTaskSoftServe.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5ac091da-a966-4f65-a671-cdef33fa17e9"),
+                            Id = new Guid("c23bedfb-d070-43c3-8554-ba627502b820"),
                             Description = "Description 1",
                             Title = "Course 1"
                         },
                         new
                         {
-                            Id = new Guid("afd2bc30-d83d-46d0-acc7-ef7c180d6221"),
+                            Id = new Guid("75e32b4d-22ae-47e7-888e-0548d802903a"),
                             Description = "Description 2",
                             Title = "Course 2"
                         },
                         new
                         {
-                            Id = new Guid("59b218c6-8e06-4614-a61a-a0b2c4f5037e"),
+                            Id = new Guid("3c2948fb-fef2-47b0-92da-d8fbbca27fca"),
                             Description = "Description 3",
                             Title = "Course 3"
                         },
                         new
                         {
-                            Id = new Guid("b3c3cd66-20a2-4c44-8b05-940e2c9edb2f"),
+                            Id = new Guid("9039133d-c013-4b91-9664-d193e0d67830"),
                             Description = "Description 4",
                             Title = "Course 4"
                         },
                         new
                         {
-                            Id = new Guid("a40aef7f-6f73-4e0e-b2e3-2905324272c4"),
+                            Id = new Guid("90661fbe-5533-4e92-938f-3387ede54d05"),
                             Description = "Description 5",
                             Title = "Course 5"
                         },
                         new
                         {
-                            Id = new Guid("d5a4724e-b4b2-4c15-936f-83cd0217d9d5"),
+                            Id = new Guid("f18293bf-ba2d-406f-9b04-c78a5190504e"),
                             Description = "Description 6",
                             Title = "Course 6"
                         },
                         new
                         {
-                            Id = new Guid("b72bd0ef-0c70-42ca-ab57-8cfb4548ea1b"),
+                            Id = new Guid("d0e34392-7b21-49ae-964a-8b98a5506e5c"),
                             Description = "Description 7",
                             Title = "Course 7"
                         },
                         new
                         {
-                            Id = new Guid("b4f955ad-0961-4388-bece-329275d02a3f"),
+                            Id = new Guid("105c6f3f-dbbf-4df3-97f1-272bd988c1e6"),
                             Description = "Description 8",
                             Title = "Course 8"
                         },
                         new
                         {
-                            Id = new Guid("d26feeb7-1a9c-4706-a4f5-e41b02d45a90"),
+                            Id = new Guid("f58cf47f-34e3-4eec-85f8-ac472b2bb594"),
                             Description = "Description 9",
                             Title = "Course 9"
                         },
                         new
                         {
-                            Id = new Guid("8e408633-a43f-4e31-a596-14d2a87b2e8a"),
+                            Id = new Guid("c5515509-0d62-44f9-89ca-d9d7f796f478"),
                             Description = "Description 10",
                             Title = "Course 10"
                         },
                         new
                         {
-                            Id = new Guid("4d8444e3-33d4-4683-a5bf-0771786213ee"),
+                            Id = new Guid("dddd3fa6-32d6-489f-a3a5-28df94e1fbd9"),
                             Description = "Description 11",
                             Title = "Course 11"
                         },
                         new
                         {
-                            Id = new Guid("f58eb51e-faa3-4b5f-9866-1006b679eb7a"),
+                            Id = new Guid("e349fd9b-297f-4e04-8349-399b66b5ec9e"),
                             Description = "Description 12",
                             Title = "Course 12"
                         },
                         new
                         {
-                            Id = new Guid("3852a934-af96-46e7-a5d8-c86a9923d054"),
+                            Id = new Guid("d7a00e5f-ae29-4195-af17-b1450a24c429"),
                             Description = "Description 13",
                             Title = "Course 13"
                         },
                         new
                         {
-                            Id = new Guid("6a5232bf-d055-4e5d-9007-959076aff117"),
+                            Id = new Guid("2d90d7b4-187d-4625-99e4-9ffce997e26a"),
                             Description = "Description 14",
                             Title = "Course 14"
                         },
                         new
                         {
-                            Id = new Guid("5ff13a15-bbde-498f-b456-4ad399665ad8"),
+                            Id = new Guid("29a7c329-7c2a-4311-b9d3-1664929db4ca"),
                             Description = "Description 15",
                             Title = "Course 15"
                         },
                         new
                         {
-                            Id = new Guid("d9cf4fde-7035-486b-b675-e25c2c9cfb58"),
+                            Id = new Guid("324a22f3-3c5e-4e42-97c5-203abd8ba03e"),
                             Description = "Description 16",
                             Title = "Course 16"
                         },
                         new
                         {
-                            Id = new Guid("2a86b21b-d7c6-43a9-b2f0-79d03283037a"),
+                            Id = new Guid("5798cd04-ca2a-4d13-a80b-ce504c62d5f9"),
                             Description = "Description 17",
                             Title = "Course 17"
                         },
                         new
                         {
-                            Id = new Guid("0f36f97b-f000-4d25-8967-1456927db432"),
+                            Id = new Guid("466d87d5-06fd-4c92-914f-5c5c4adfc3d9"),
                             Description = "Description 18",
                             Title = "Course 18"
                         },
                         new
                         {
-                            Id = new Guid("7bb50a13-a1d1-4b4e-a637-8a12b5b94280"),
+                            Id = new Guid("fcd7b1af-a9b3-493e-b43d-7c41fd3a7666"),
                             Description = "Description 19",
                             Title = "Course 19"
                         },
                         new
                         {
-                            Id = new Guid("341b29a7-0e51-4644-a597-68a966253b5d"),
+                            Id = new Guid("89dfcfdd-3eea-4a1a-99d8-00ed79e6f506"),
                             Description = "Description 20",
                             Title = "Course 20"
                         });
@@ -432,8 +432,8 @@ namespace TestTaskSoftServe.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("16ffa2d5-cb4e-4f8e-9f2b-cf8e7b61dc3b"),
-                            Age = 41,
+                            Id = new Guid("170423fb-907c-46ba-8c4d-89fff5f84b43"),
+                            Age = 28,
                             Group = "Group 1",
                             Name = "Student's name 1",
                             StudyYear = 1,
@@ -441,17 +441,17 @@ namespace TestTaskSoftServe.DAL.Migrations
                         },
                         new
                         {
-                            Id = new Guid("dd4e2eaa-f972-4ae9-bd4e-f35a5e37b074"),
-                            Age = 32,
+                            Id = new Guid("c9fdd8ab-6827-42cf-a269-1a330e2bbd40"),
+                            Age = 33,
                             Group = "Group 2",
                             Name = "Student's name 2",
-                            StudyYear = 5,
+                            StudyYear = 4,
                             Surname = "Student's surname 2"
                         },
                         new
                         {
-                            Id = new Guid("d80c2c21-4603-4da9-b857-89286adf5cfd"),
-                            Age = 33,
+                            Id = new Guid("d19d02f5-4eb7-432e-9de9-3e3a9c40f16e"),
+                            Age = 66,
                             Group = "Group 3",
                             Name = "Student's name 3",
                             StudyYear = 0,
@@ -459,8 +459,8 @@ namespace TestTaskSoftServe.DAL.Migrations
                         },
                         new
                         {
-                            Id = new Guid("f0e9d527-3ea5-4ce9-9f7f-fc832466c1c0"),
-                            Age = 34,
+                            Id = new Guid("df778a58-8e85-4510-a25e-76af54282209"),
+                            Age = 109,
                             Group = "Group 4",
                             Name = "Student's name 4",
                             StudyYear = 0,
@@ -468,26 +468,26 @@ namespace TestTaskSoftServe.DAL.Migrations
                         },
                         new
                         {
-                            Id = new Guid("95c95bdc-b739-4a58-b7bd-fd0e8da308a9"),
-                            Age = 51,
+                            Id = new Guid("144440a7-07fd-4762-b001-e50f8485b151"),
+                            Age = 72,
                             Group = "Group 5",
                             Name = "Student's name 5",
-                            StudyYear = 7,
+                            StudyYear = 14,
                             Surname = "Student's surname 5"
                         },
                         new
                         {
-                            Id = new Guid("23d68fd5-ac3c-4707-9dc6-0f1eb21cd264"),
-                            Age = 64,
+                            Id = new Guid("d97b1c40-a546-4fd6-9392-4466adbee4d0"),
+                            Age = 56,
                             Group = "Group 6",
                             Name = "Student's name 6",
-                            StudyYear = 14,
+                            StudyYear = 13,
                             Surname = "Student's surname 6"
                         },
                         new
                         {
-                            Id = new Guid("006fcd1d-ce66-4455-9dce-7d05b475cd36"),
-                            Age = 25,
+                            Id = new Guid("c9952b3f-bbcb-49dd-a547-a5a8b68c91a4"),
+                            Age = 65,
                             Group = "Group 7",
                             Name = "Student's name 7",
                             StudyYear = 4,
@@ -495,29 +495,29 @@ namespace TestTaskSoftServe.DAL.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7fb5119d-6bc5-41c6-baa8-77c8591a8d53"),
-                            Age = 103,
+                            Id = new Guid("6275f4ac-70ce-4bd3-b446-ba27dc37fb3e"),
+                            Age = 47,
                             Group = "Group 8",
                             Name = "Student's name 8",
-                            StudyYear = 3,
+                            StudyYear = 18,
                             Surname = "Student's surname 8"
                         },
                         new
                         {
-                            Id = new Guid("306ea955-fc44-4cdf-918a-d0bf2bdd550e"),
-                            Age = 32,
+                            Id = new Guid("ba8911cd-b330-4de5-a0a9-fb79d6224ac5"),
+                            Age = 93,
                             Group = "Group 9",
                             Name = "Student's name 9",
-                            StudyYear = 26,
+                            StudyYear = 15,
                             Surname = "Student's surname 9"
                         },
                         new
                         {
-                            Id = new Guid("043e5fbb-94cf-436d-bc68-f9abd1133c54"),
-                            Age = 91,
+                            Id = new Guid("16c4e638-d049-4c91-87d1-9a7a8f856706"),
+                            Age = 21,
                             Group = "Group 10",
                             Name = "Student's name 10",
-                            StudyYear = 22,
+                            StudyYear = 27,
                             Surname = "Student's surname 10"
                         });
                 });
@@ -551,81 +551,81 @@ namespace TestTaskSoftServe.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ace82b6c-fd2f-4406-a8ba-2c7f179c9bb3"),
-                            Age = 35,
-                            Experience = 1,
+                            Id = new Guid("71e26009-f453-46c0-a4f9-df6556a368d3"),
+                            Age = 53,
+                            Experience = 2,
                             Name = "Teacher's name 1",
                             Surname = "Teacher's surname 1"
                         },
                         new
                         {
-                            Id = new Guid("12de37db-5368-49f3-b58c-272d23cf16a1"),
-                            Age = 64,
-                            Experience = 0,
+                            Id = new Guid("e96afaee-92fa-43bd-85e0-b34cb8f7502f"),
+                            Age = 50,
+                            Experience = 5,
                             Name = "Teacher's name 2",
                             Surname = "Teacher's surname 2"
                         },
                         new
                         {
-                            Id = new Guid("06b957ee-f78b-4c66-8876-f7b5f126add6"),
-                            Age = 64,
-                            Experience = 8,
+                            Id = new Guid("2920ea02-f7f3-415b-915a-4448117d6ddf"),
+                            Age = 20,
+                            Experience = 1,
                             Name = "Teacher's name 3",
                             Surname = "Teacher's surname 3"
                         },
                         new
                         {
-                            Id = new Guid("7a834bcc-5f60-4321-85f9-ad8f88a30624"),
-                            Age = 59,
-                            Experience = 0,
+                            Id = new Guid("bb8b413b-d9b3-48ef-b243-651004c995ec"),
+                            Age = 49,
+                            Experience = 11,
                             Name = "Teacher's name 4",
                             Surname = "Teacher's surname 4"
                         },
                         new
                         {
-                            Id = new Guid("55079f63-0c36-4b91-934d-3afd33ad3f48"),
-                            Age = 40,
-                            Experience = 14,
+                            Id = new Guid("bd2172b3-eec6-4346-8de5-508beeb4c070"),
+                            Age = 52,
+                            Experience = 6,
                             Name = "Teacher's name 5",
                             Surname = "Teacher's surname 5"
                         },
                         new
                         {
-                            Id = new Guid("3dd35bf3-7621-4d53-b6b2-bc11f967c41f"),
-                            Age = 33,
-                            Experience = 12,
+                            Id = new Guid("e37a28b7-8252-425c-af62-3f39399c9fa1"),
+                            Age = 45,
+                            Experience = 10,
                             Name = "Teacher's name 6",
                             Surname = "Teacher's surname 6"
                         },
                         new
                         {
-                            Id = new Guid("2d27802d-f8ce-42ad-aab6-c8551e2fa1c7"),
-                            Age = 26,
-                            Experience = 14,
+                            Id = new Guid("2e672988-007c-4d59-8cd4-8c31ab637265"),
+                            Age = 62,
+                            Experience = 12,
                             Name = "Teacher's name 7",
                             Surname = "Teacher's surname 7"
                         },
                         new
                         {
-                            Id = new Guid("3d2e5aa0-c3ed-47d1-8faf-15741bbf6175"),
-                            Age = 62,
-                            Experience = 17,
+                            Id = new Guid("fb8e8494-26ef-475f-a4da-fd630fd59117"),
+                            Age = 25,
+                            Experience = 0,
                             Name = "Teacher's name 8",
                             Surname = "Teacher's surname 8"
                         },
                         new
                         {
-                            Id = new Guid("066ddf41-46c7-48e3-8493-a3550db85b1c"),
-                            Age = 34,
-                            Experience = 20,
+                            Id = new Guid("895ae290-1f8a-4450-9ef4-40f7dc8725c3"),
+                            Age = 30,
+                            Experience = 23,
                             Name = "Teacher's name 9",
                             Surname = "Teacher's surname 9"
                         },
                         new
                         {
-                            Id = new Guid("9704f246-4e39-4d97-84da-ae386fbafe39"),
-                            Age = 51,
-                            Experience = 8,
+                            Id = new Guid("ec6ae8b7-54ea-4fa5-8665-40b4b3a09f4d"),
+                            Age = 64,
+                            Experience = 28,
                             Name = "Teacher's name 10",
                             Surname = "Teacher's surname 10"
                         });

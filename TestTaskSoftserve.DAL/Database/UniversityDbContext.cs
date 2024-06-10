@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,11 @@ namespace TestTaskSoftserve.DAL.Database
 {
     public class UniversityDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {
-        public UniversityDbContext(DbContextOptions<UniversityDbContext> options) : base(options)
+        private readonly IConfiguration _configuration;
+        public UniversityDbContext(DbContextOptions<UniversityDbContext> options,
+            IConfiguration configuration) : base(options)
         {
+            _configuration = configuration;
         }
 
         public DbSet<Student> Students { get; set; }
@@ -33,7 +37,7 @@ namespace TestTaskSoftserve.DAL.Database
             builder.ApplyConfiguration(new CourseEntityConfiguration());
             builder.ApplyConfiguration(new TeacherEntityConfiguration());
 
-            builder.SeedData();
+            builder.SeedData(_configuration);
         }
     }
 }

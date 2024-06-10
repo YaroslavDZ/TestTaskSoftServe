@@ -1,20 +1,24 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestTaskSoftserve.DAL.Entities;
+using TestTaskSoftServe.DAL.Entities.User;
 
 namespace TestTaskSoftServe.DAL.Database
 {
     public static class ModelBuilderExtensions
     {
-        public static void SeedData(this ModelBuilder modelBuilder)
+        public static void SeedData(this ModelBuilder modelBuilder, IConfiguration configuration)
         {
             SeedCourses(modelBuilder);
             SeedStudents(modelBuilder);
             SeedTeachers(modelBuilder);
+            SeedAdmin(modelBuilder, configuration);
         }
 
         private static void SeedCourses(this ModelBuilder modelBuilder) 
@@ -86,6 +90,53 @@ namespace TestTaskSoftServe.DAL.Database
             }
 
             modelBuilder.Entity<Teacher>().HasData(teachers);
+        }
+
+        private static void SeedAdmin(this ModelBuilder modelBuilder, IConfiguration configuration)
+        {
+            Guid AdminRoleId = Guid.NewGuid();
+            Guid UserRoleId = Guid.NewGuid();
+            Guid AdminId = Guid.NewGuid();
+
+            var adminEmail = configuration["AdminEmail"];
+            var adminPassword = configuration["AdminPassword"];
+
+            var passwordHasher = new PasswordHasher<ApplicationUser>();
+
+            var admin = new ApplicationUser
+            {
+                Id = AdminId,
+                UserName = adminEmail,
+                NormalizedUserName = adminEmail.ToUpper(),
+                Email = adminEmail,
+                NormalizedEmail = adminEmail.ToUpper(),
+                EmailConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString("D")
+            };
+
+            admin.PasswordHash = passwordHasher.HashPassword(admin, adminPassword);
+
+            modelBuilder.Entity<ApplicationUser>().HasData(admin);
+
+            modelBuilder.Entity<ApplicationRole>().HasData(new ApplicationRole
+            {
+                Id = AdminRoleId,
+                Name = "Admin",
+                NormalizedName = "ADMIN"
+            });
+
+            modelBuilder.Entity<ApplicationRole>().HasData(new ApplicationRole
+            {
+                Id = UserRoleId,
+                Name = "User",
+                NormalizedName = "USER"
+            });
+
+            modelBuilder.Entity<IdentityUserRole<Guid>>().HasData(new IdentityUserRole<Guid>
+            {
+                RoleId = AdminRoleId,
+                UserId = AdminId
+            });
         }
     }
 }
