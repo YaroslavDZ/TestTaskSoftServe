@@ -19,7 +19,6 @@ namespace Test_Task_SoftServe.Controllers.Course
             _courseService = courseService;
         }
 
-        [Authorize("Admin")]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -44,7 +43,6 @@ namespace Test_Task_SoftServe.Controllers.Course
             return courseResponseDto is null ? NoContent() : Ok(courseResponseDto);
         }
 
-        [Authorize("Admin")]
         [HttpPost]
         public async Task<IActionResult> Create(CourseAddRequestDto? courseAddRequestDto)
         {
@@ -61,7 +59,6 @@ namespace Test_Task_SoftServe.Controllers.Course
                 courseResponseDto);
         }
 
-        [Authorize("Admin")]
         [HttpPut]
         public async Task<IActionResult> Update(CourseUpdateRequestDto? courseUpdateRequestDto)
         {
@@ -71,7 +68,6 @@ namespace Test_Task_SoftServe.Controllers.Course
             return courseResponseDto is null ? NotFound() : Ok(courseResponseDto);
         }
 
-        [Authorize("Admin")]
         [HttpDelete]
         public async Task<IActionResult> Delete(Guid id)
         {

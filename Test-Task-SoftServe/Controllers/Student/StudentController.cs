@@ -42,7 +42,6 @@ namespace Test_Task_SoftServe.Controllers.Student
             return studentResponseDto is null ? NoContent() : Ok(studentResponseDto);
         }
 
-        [Authorize("Admin")]
         [HttpPost]
         public async Task<IActionResult> Create(StudentAddRequestDto? studentAddRequestDto)
         {
@@ -59,7 +58,6 @@ namespace Test_Task_SoftServe.Controllers.Student
                 studentResponseDto);
         }
 
-        [Authorize("Admin")]
         [HttpPut]
         public async Task<IActionResult> Update(StudentUpdateRequestDto? studentUpdateRequestDto)
         {
@@ -69,7 +67,6 @@ namespace Test_Task_SoftServe.Controllers.Student
             return studentResponseDto is null ? NotFound() : Ok(studentResponseDto);
         }
 
-        [Authorize("Admin")]
         [HttpDelete]
         public async Task<IActionResult> Delete(Guid id)
         {
