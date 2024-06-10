@@ -14,7 +14,6 @@ namespace TestTaskSoftServe.BLL.Services.Interfaces
         Task<CourseResponseDto> CreateCourse(CourseAddRequestDto? courseAddRequestDto);
         Task<CourseResponseDto> GetCourseById(Guid? id);
         Task<List<CourseResponseDto>> GetAllCourses();
-        Task<List<CourseResponseDto>> GetAllCourses(Expression<Func<Course, bool>> predicate);
         Task<bool> DeleteCourseById(Guid id);
         Task<CourseResponseDto> UpdateCourse(CourseUpdateRequestDto? courseUpdateRequestDto);
     }

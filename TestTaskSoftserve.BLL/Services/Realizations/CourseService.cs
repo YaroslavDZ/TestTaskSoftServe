@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using TestTaskSoftserve.DAL.Entities;
 using TestTaskSoftServe.BLL.Dto.CourseDtos;
 using TestTaskSoftServe.BLL.Services.Interfaces;
@@ -16,25 +12,35 @@ namespace TestTaskSoftServe.BLL.Services.Realizations
     {
         private readonly ICoursesRepository _coursesRepository;
         private readonly IMapper _mapper;
+        private readonly ILogger<CourseService> _logger;
 
-        public CourseService(ICoursesRepository coursesRepository, IMapper mapper)
+        public CourseService(ICoursesRepository coursesRepository, IMapper mapper,
+            ILogger<CourseService> logger)
         {
             _coursesRepository = coursesRepository;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<CourseResponseDto> CreateCourse(CourseAddRequestDto? courseAddRequestDto)
         {
             if (courseAddRequestDto is null)
             {
-                throw new ArgumentNullException(nameof(courseAddRequestDto), "Course dto is null");
+                var message = "CourseAddRequest dto is null";
+                _logger.LogError(message);
+                throw new ArgumentNullException(nameof(courseAddRequestDto), message);
             }
 
-            var course = _mapper.Map<Course>(courseAddRequestDto);
+            _logger.LogInformation("The course creating was started.");
 
-            var createdCourse = await _coursesRepository.CreateAsync(course);
+            var course = _mapper.Map<Course>(courseAddRequestDto);
+            course.Id = Guid.NewGuid();
+
+            var createdCourse = await _coursesRepository.CreateAsync(course).ConfigureAwait(false);
 
             var response = _mapper.Map<CourseResponseDto>(createdCourse);
+
+            _logger.LogInformation($"The course with id {createdCourse.Id} was created successfully.");
 
             return response;
             
@@ -42,47 +48,64 @@ namespace TestTaskSoftServe.BLL.Services.Realizations
 
         public async Task<bool> DeleteCourseById(Guid id)
         {
-            Course? course = await _coursesRepository.GetByIdAsync(id);
+            _logger.LogInformation($"Deleting Course with Id = {id} was started.");
+
+            Course? course = await _coursesRepository.GetByIdAsync(id).ConfigureAwait(false);
 
             if (course is null)
             {
+                _logger.LogInformation($"Course with Id = {id} wasn't found.");
                 return false;
             }
 
-            await _coursesRepository.DeleteByIdAsync(id);
+            try
+            {
+                await _coursesRepository.DeleteByIdAsync(id).ConfigureAwait(false);
+                _logger.LogInformation($"The Course with Id = {id} was successfully deleted.");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                _logger.LogError($"Deleting Course with Id = {id} was failed.");
+                throw;
+            }
 
             return true;
         }
 
         public async Task<List<CourseResponseDto>> GetAllCourses()
         {
-            var courses = await _coursesRepository.GetAllAsync();
+            _logger.LogInformation("Getting all Courses started.");
 
-            return courses.Select(c => _mapper.Map<CourseResponseDto>(c)).ToList();
-        }
+            var courses = await _coursesRepository.GetAllAsync().ConfigureAwait(false);
 
-        public async Task<List<CourseResponseDto>> GetAllCourses(Expression<Func<Course, bool>> predicate)
-        {
-            var courses = await _coursesRepository.GetAllAsync(predicate);
+            _logger.LogInformation(!courses.Any()
+            ? "Course table is empty."
+            : $"All {courses.Count()} records were successfully received from the Course table");
 
             return courses.Select(c => _mapper.Map<CourseResponseDto>(c)).ToList();
         }
 
         public async Task<CourseResponseDto> GetCourseById(Guid? id)
         {
+            _logger.LogInformation($"Getting Course by Id started. Looking Id = {id}.");
+
             if (id is null)
             {
-                var message = "Id can't be null";
+                var message = "Course id can't be null";
+                _logger.LogError(message);
                 throw new ArgumentNullException(nameof(id), message);
             }
 
-            Course? course = await _coursesRepository.GetByIdAsync(id.Value);
+            Course? course = await _coursesRepository.GetByIdAsync(id.Value).ConfigureAwait(false);
 
             if (course is null)
             {
                 var message = $"There is no object by such id: {id}";
+                _logger.LogError(message);
                 throw new KeyNotFoundException(message);
             }
+
+            _logger.LogInformation($"Got a course with Id = {id}.");
 
             return _mapper.Map<CourseResponseDto>(course);
         }
@@ -91,15 +114,22 @@ namespace TestTaskSoftServe.BLL.Services.Realizations
         {
             if (courseUpdateRequestDto is null)
             {
-                var message = "Update dto is null";
+                var message = "CourseUpdateRequestDto is null";
+                _logger.LogError(message);
                 throw new ArgumentNullException(nameof(courseUpdateRequestDto), message);
             }
 
+            _logger.LogInformation($"Updating Course with Id = {courseUpdateRequestDto.Id} was started.");
+
             var course = _mapper.Map<Course>(courseUpdateRequestDto);
 
-            await _coursesRepository.UpdateAsync(course);
+            await _coursesRepository.UpdateAsync(course).ConfigureAwait(false);
 
-            return _mapper.Map<CourseResponseDto>(course);
+            var result = _mapper.Map<CourseResponseDto>(course);
+
+            _logger.LogInformation($"The course with Id = {courseUpdateRequestDto.Id} was updated.");
+
+            return result;
         }
     }
 }

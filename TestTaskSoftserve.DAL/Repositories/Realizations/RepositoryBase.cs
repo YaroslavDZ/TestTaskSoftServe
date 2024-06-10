@@ -29,7 +29,7 @@ namespace TestTaskSoftserve.DAL.Repositories.Realizations
             return entity;
         }
 
-        public async Task<bool> DeleteAsync(Guid id)
+        public async Task<bool> DeleteByIdAsync(Guid id)
         {
             T? instance = await _db.Set<T>().FindAsync(id);
 
@@ -50,13 +50,6 @@ namespace TestTaskSoftserve.DAL.Repositories.Realizations
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _db.Set<T>().ToListAsync();
-        }
-
-        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> predicate)
-        {
-            return await _db.Set<T>()
-                .Where(predicate)
-                .ToListAsync();
         }
 
         public async Task<T?> GetByIdAsync(Guid id)

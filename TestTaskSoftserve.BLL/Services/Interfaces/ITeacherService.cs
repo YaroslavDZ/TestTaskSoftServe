@@ -15,7 +15,6 @@ namespace TestTaskSoftServe.BLL.Services.Interfaces
         Task<TeacherResponseDto> CreateTeacher(TeacherAddRequestDto? teacherAddRequestDto);
         Task<TeacherResponseDto> GetTeacherById(Guid? id);
         Task<List<TeacherResponseDto>> GetAllTeachers();
-        Task<List<TeacherResponseDto>> GetAllTeachers(Expression<Func<Teacher, bool>> predicate);
         Task<bool> DeleteTeacherById(Guid id);
         Task<TeacherResponseDto> UpdateTeacher(TeacherUpdateRequestDto? teacherUpdateRequestDto);
     }

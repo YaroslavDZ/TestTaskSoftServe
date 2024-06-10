@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TestTaskSoftServe.BLL.Dto.CourseDtos;
+using TestTaskSoftServe.BLL.Dto.TeacherDtos;
 using TestTaskSoftServe.BLL.Services.Interfaces;
+using TestTaskSoftServe.BLL.Services.Realizations;
 
 namespace Test_Task_SoftServe.Controllers.Course
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]/[action]")]
     public class CourseController : ControllerBase
     {
         private readonly ICourseService _courseService;
@@ -17,46 +19,57 @@ namespace Test_Task_SoftServe.Controllers.Course
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll() 
+        public async Task<IActionResult> GetAll()
         {
-            List<CourseResponseDto> courseResponseDtos = await _courseService.GetAllCourses();
+            var courseResponseDtos =
+                await _courseService.GetAllCourses().ConfigureAwait(false);
+
+            if (!courseResponseDtos.Any())
+            {
+                return NoContent();
+            }
 
             return Ok(courseResponseDtos);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(Guid? id)
+        public async Task<IActionResult> GetById(Guid? id)
         {
-            CourseResponseDto courseResponseDto = await _courseService.GetCourseById(id);
+            var courseResponseDto =
+                await _courseService.GetCourseById(id).ConfigureAwait(false);
 
-            return Ok(courseResponseDto);
+            return courseResponseDto is null ? NoContent() : Ok(courseResponseDto);
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(CourseAddRequestDto? courseAddRequestDto)
         {
-            CourseResponseDto courseResponseDto = await _courseService.CreateCourse(courseAddRequestDto);
+            if (courseAddRequestDto is null)
+            {
+                return BadRequest();
+            }
 
-            return Ok(courseResponseDto);
+            var courseResponseDto =
+                await _courseService.CreateCourse(courseAddRequestDto).ConfigureAwait(false);
+
+            return CreatedAtAction(nameof(GetById),
+                new { courseResponseDto.Id },
+                courseResponseDto);
         }
 
         [HttpPut]
         public async Task<IActionResult> Update(CourseUpdateRequestDto? courseUpdateRequestDto)
         {
-            var courseResponseDto = await _courseService.UpdateCourse(courseUpdateRequestDto);
+            var courseResponseDto =
+                await _courseService.UpdateCourse(courseUpdateRequestDto).ConfigureAwait(false);
 
-            if (courseResponseDto is null) 
-            {
-                return NotFound();
-            }
-
-            return Ok(courseResponseDto);
+            return courseResponseDto is null ? NotFound() : Ok(courseResponseDto);
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(Guid id)
         {
-            bool isDeleted = await _courseService.DeleteCourseById(id);
+            bool isDeleted = await _courseService.DeleteCourseById(id).ConfigureAwait(false);
 
             return isDeleted ? NoContent() : NotFound();
         }

@@ -15,8 +15,6 @@ namespace TestTaskSoftserve.DAL.Repositories.Interfaces
 
         Task<IEnumerable<T>> GetAllAsync();
 
-        Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> predicate);
-
         Task<T> UpdateAsync(T entity);
 
         Task<bool> DeleteByIdAsync(Guid id);
